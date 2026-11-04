@@ -19,13 +19,14 @@
     "postProcessing": "Постобработка",
     "history": "История",
     "debug": "Отстраняване",
-    "about": "За приложението"
+    "about": "За приложението",
+    "meetings": "Meetings"
   },
   "onboarding": {
     "customModelDescription": "Не се поддържа официално",
     "migration": {
       "title": "Моделите ви се нуждаят от обновяване",
-      "description": "Handy вече използва по-нов вид модели. Изтеглете новата версия, за да продължите да транскрибирате. Старите версии ще бъдат премахнати.",
+      "description": "Mandy вече използва по-нов вид модели. Изтеглете новата версия, за да продължите да транскрибирате. Старите версии ще бъдат премахнати.",
       "replaces": "Заменя {{name}}",
       "oldFormat": "Стар формат",
       "failed": "Изтеглянето е неуспешно",
@@ -62,11 +63,11 @@
     "permissions": {
       "microphone": {
         "name": "Микрофон",
-        "why": "За да може Handy да ви чува. Звукът се превръща в текст на този компютър и никога не се качва никъде."
+        "why": "За да може Mandy да ви чува. Звукът се превръща в текст на този компютър и никога не се качва никъде."
       },
       "accessibility": {
         "name": "Достъпност",
-        "why": "За да работи бързият ви клавиш във всяко приложение и Handy да въвежда текста там, където е курсорът ви."
+        "why": "За да работи бързият ви клавиш във всяко приложение и Mandy да въвежда текста там, където е курсорът ви."
       },
       "errors": {
         "checkFailed": "Проверката на разрешенията не бе успешна. Опитайте отново.",
@@ -80,12 +81,12 @@
       "openSettings": "Отвори настройките",
       "allowed": "Разрешено",
       "waiting": "Изчакване",
-      "turnOnMac": "Включете Handy в Системни настройки, после се върнете тук.",
+      "turnOnMac": "Включете Mandy в Системни настройки, после се върнете тук.",
       "turnOnWindows": "Включете достъпа до микрофона в Настройки на Windows, после се върнете тук.",
       "hintBoth": "Разрешете и двете, за да продължите",
       "hintMicrophone": "Разрешете микрофона, за да продължите",
       "welcomeBack": "Добре дошли отново. Продължаваме от където спряхте.",
-      "relaunch": "Бързият клавиш не реагира след това? <relaunch>Рестартирайте Handy</relaunch> и ще се озовете точно тук."
+      "relaunch": "Бързият клавиш не реагира след това? <relaunch>Рестартирайте Mandy</relaunch> и ще се озовете точно тук."
     },
     "shell": {
       "back": "Назад",
@@ -96,11 +97,11 @@
       "title": "Говорете вместо да пишете, във всяко приложение",
       "subtitle": "Изберете езиците, на които ще диктувате",
       "languagesLabel": "Езици",
-      "noMatch": "Няма език, който съвпада с „{{query}}“. Моделите на Handy покриват около 100 езика; още има в настройките.",
+      "noMatch": "Няма език, който съвпада с „{{query}}“. Моделите на Mandy покриват около 100 езика; още има в настройките.",
       "appLanguage": "Език на приложението",
       "menusIn": "Менюта на <b>{{language}}</b>",
       "chinese": {
-        "question": "Говорите {{languages}}. Кои йероглифи да пише Handy?",
+        "question": "Говорите {{languages}}. Кои йероглифи да пише Mandy?",
         "label": "Китайски йероглифи",
         "zh-Hans": "Опростени",
         "zh-Hant": "Тайван",
@@ -170,7 +171,7 @@
     },
     "try": {
       "title": "Пробвайте!",
-      "subtitle": "Handy е в ъгъла, за да ви води стъпка по стъпка",
+      "subtitle": "Mandy е в ъгъла, за да ви води стъпка по стъпка",
       "noteLabel": "Бележка",
       "placeholder": "Нова бележка",
       "hold": "Задръжте <keys/> и говорете.",
@@ -198,14 +199,14 @@
     },
     "done": {
       "title": "Всичко е готово",
-      "subMac": "Handy вече е в лентата с менюта. Задръжте или натиснете <keys/> във всяко приложение, за да говорите.",
-      "subTray": "Handy вече е в системната област. Задръжте или натиснете <keys/> във всяко приложение, за да говорите.",
+      "subMac": "Mandy вече е в лентата с менюта. Задръжте или натиснете <keys/> във всяко приложение, за да говорите.",
+      "subTray": "Mandy вече е в системната област. Задръжте или натиснете <keys/> във всяко приложение, за да говорите.",
       "hint": "Можете да промените това по-късно в Настройки",
       "highFiveLabel": "Дай пет",
-      "atLogin": "Стартирай Handy при влизане в системата",
+      "atLogin": "Стартирай Mandy при влизане в системата",
       "finish": "Готово",
       "panel": {
-        "name": "Handy",
+        "name": "Mandy",
         "ready": "Готов",
         "languages": "Езици",
         "model": "Модел за реч",
@@ -330,7 +331,7 @@
     "general": {
       "title": "Общи",
       "shortcut": {
-        "title": "Бързи клавиши на Handy",
+        "title": "Бързи клавиши на Mandy",
         "description": "Настройте клавишни комбинации за стартиране на запис за реч към текст",
         "loading": "Зареждане на бързите клавиши...",
         "none": "Няма настроени бързи клавиши",
@@ -372,7 +373,7 @@
       },
       "preferredLanguages": {
         "title": "Предпочитани езици",
-        "description": "Езиците, на които говорите. Handy ги използва, за да препоръчва модели.",
+        "description": "Езиците, на които говорите. Mandy ги използва, за да препоръчва модели.",
         "noMatch": "Няма език, който съвпада с „{{query}}“",
         "weak": "Все още няма модел, който разпознава добре {{languages}}."
       },
@@ -399,17 +400,17 @@
         "fits": "За вашите езици",
         "untested": "Нетествани"
       },
-      "untestedNote": "Не са тествани с Handy. Може да са по-бавни или да правят повече грешки.",
+      "untestedNote": "Не са тествани с Mandy. Може да са по-бавни или да правят повече грешки.",
       "untestedHidden_one": "{{count}} друг модел не е пригоден за диктуване. Потърсете, за да го намерите.",
       "untestedHidden_other": "{{count}} други модела не са пригодени за диктуване. Потърсете, за да намерите някой.",
-      "emptyYours": "Още няма модели. Изберете един по-долу: изтегля се и Handy го използва.",
+      "emptyYours": "Още няма модели. Изберете един по-долу: изтегля се и Mandy го използва.",
       "showMore": "Покажи още {{count}}",
       "showFewer": "Покажи по-малко",
       "download": "Изтегли и използвай",
       "downloadingThenUse": "{{percent}}% от {{total}}, после превключва",
       "loading": "Зареждане…",
       "deleteAsk": "Да се изтрие ли {{name}}? Освобождава {{size}}.",
-      "deleteAskActive": "Да се изтрие ли {{name}}? Handy не може да транскрибира, докато не изберете друг.",
+      "deleteAskActive": "Да се изтрие ли {{name}}? Mandy не може да транскрибира, докато не изберете друг.",
       "cancel": "Отказ",
       "deleteModel": "Изтрий {{name}}",
       "cancelDownload": "Спри изтеглянето на {{name}}",
@@ -423,14 +424,14 @@
         "marks": "? още не е измерено. — не разбира този език."
       },
       "retiredNotice": {
-        "title": "Старите модели вече не работят с Handy",
+        "title": "Старите модели вече не работят с Mandy",
         "description": "Заемат {{size}} на компютъра ви.",
         "delete": "Изтрий моделите",
         "deleteFailed": "Някои стари модели не можаха да бъдат изтрити. Проверете журнала за подробности."
       },
       "rescan": {
         "label": "Сканиране отново",
-        "tooltip": "Сканиране отново за модели, добавени в папката с модели или кеша на Hugging Face извън Handy"
+        "tooltip": "Сканиране отново за модели, добавени в папката с модели или кеша на Hugging Face извън Mandy"
       }
     },
     "languages": {
@@ -500,11 +501,11 @@
       },
       "autostart": {
         "label": "Стартиране със системата",
-        "description": "Автоматично стартиране на Handy при влизане в профила ви."
+        "description": "Автоматично стартиране на Mandy при влизане в профила ви."
       },
       "showTrayIcon": {
         "label": "Икона в системната област",
-        "description": "Показване на иконата на Handy в системната област."
+        "description": "Показване на иконата на Mandy в системната област."
       },
       "overlay": {
         "style": {
@@ -741,7 +742,7 @@
       },
       "updateChecks": {
         "label": "Проверка за актуализации",
-        "description": "Автоматична проверка за нови версии на Handy",
+        "description": "Автоматична проверка за нови версии на Mandy",
         "lockedDescription": "Деактивирано от системната конфигурация (HANDY_DISABLE_UPDATER)"
       },
       "whatsNewPreview": {
@@ -847,7 +848,7 @@
       },
       "keyboardDiagnostic": {
         "title": "Диагностика на клавиатурата",
-        "description": "Проверява дали клавиатурните събития достигат до Handy. Записва се само броят на събитията — никога кои клавиши натискате.",
+        "description": "Проверява дали клавиатурните събития достигат до Mandy. Записва се само броят на събитията — никога кои клавиши натискате.",
         "run": "Стартиране на 10-секундна диагностика",
         "running": "Слушане… натиснете бързия си клавиш няколко пъти (напр. Option+Space)",
         "secureInputLabel": "Secure Input",
@@ -861,7 +862,7 @@
         "mouse": "Мишка",
         "verdictBlocked": "Secure Input блокира клавишните събития — бързите клавиши с обикновен клавиш не могат да работят, докато това не бъде решено.",
         "verdictSuspicious": "Пристигнаха събития от модификатори, но нито едно клавишно събитие — нещо потиска клавишите, въпреки че Secure Input се отчита като изключен. Моля, съобщете за това в GitHub.",
-        "verdictOk": "Клавишните събития достигат до Handy нормално.",
+        "verdictOk": "Клавишните събития достигат до Mandy нормално.",
         "verdictNoEvents": "Не са уловени събития — натиснахте ли някакви клавиши по време на теста?",
         "failed": "Диагностиката е неуспешна: {{error}}"
       }
@@ -870,15 +871,15 @@
       "title": "За приложението",
       "version": {
         "title": "Версия",
-        "description": "Текуща версия на Handy"
+        "description": "Текуща версия на Mandy"
       },
       "whatsNewUpdates": {
         "label": "Показвай новостите",
-        "description": "Показвай бележки към изданието след актуализации на Handy"
+        "description": "Показвай бележки към изданието след актуализации на Mandy"
       },
       "appDataDirectory": {
         "title": "Папка с данни на приложението",
-        "description": "Мястото, където Handy съхранява данните си"
+        "description": "Мястото, където Mandy съхранява данните си"
       },
       "sourceCode": {
         "title": "Изходен код",
@@ -887,7 +888,7 @@
       },
       "supportDevelopment": {
         "title": "Подкрепете разработката",
-        "description": "Помогнете ни да продължим да развиваме Handy",
+        "description": "Помогнете ни да продължим да развиваме Mandy",
         "button": "Дарение"
       },
       "acknowledgments": {
@@ -895,7 +896,7 @@
         "ggml": {
           "title": "ggml",
           "description": "Високопроизводително изпълнение на автоматичния модел за разпознаване на реч Whisper на OpenAI",
-          "details": "Handy използва ggml за бързо локално реч-към-текст. Благодарности на Georgi Gerganov и сътрудниците за отличната работа."
+          "details": "Mandy използва ggml за бързо локално реч-към-текст. Благодарности на Georgi Gerganov и сътрудниците за отличната работа."
         }
       }
     }
@@ -916,7 +917,7 @@
     "portableUpdateBrowseButton": "Отвори GitHub Releases"
   },
   "whatsNew": {
-    "title": "Ново в Handy v{{version}}"
+    "title": "Ново в Mandy v{{version}}"
   },
   "common": {
     "playbackPosition": "Позиция на възпроизвеждане",
@@ -941,7 +942,7 @@
     "noInputDeviceTitle": "Не е намерен микрофон",
     "noInputDevice": "Не е открито аудио входно устройство. Свържете микрофон или слушалки и опитайте отново.",
     "recordingFailedTitle": "Записът не стартира",
-    "modelLoadFailed": "Handy не можа да зареди този модел. Опитайте отново или изберете друг.",
+    "modelLoadFailed": "Mandy не можа да зареди този модел. Опитайте отново или изберете друг.",
     "modelLoadFailedTitle": "Моделът не се зареди",
     "modelDownloadFailed": "Изтеглянето е неуспешно",
     "pasteFailedTitle": "Неуспешно поставяне на текст",
@@ -951,7 +952,11 @@
     "filePostProcessFailedTitle": "Транскрибирано без постобработка",
     "filePostProcessFailed": "Постобработката не завърши, затова транскрипцията беше запазена без промени.",
     "fileTranscriptionFailedTitle": "Неуспешна транскрипция на файла",
-    "transcriptionFailedTitle": "Неуспешна транскрипция"
+    "transcriptionFailedTitle": "Неуспешна транскрипция",
+    "meetingStartFailedTitle": "Meeting Recording Didn't Start",
+    "meetingStartFailed": "Mandy needs microphone access and system audio recording (macOS 14.2 or later). Allow both in System Settings > Privacy & Security.",
+    "meetingStopFailedTitle": "Meeting Recording Wasn't Saved",
+    "meetingStopFailed": "The recording stopped, but Mandy couldn't save it for transcription."
   },
   "notices": {
     "errorOne": "{{n}} грешка",
@@ -962,11 +967,11 @@
   },
   "appLanguage": {
     "title": "Език на приложението",
-    "description": "Промяна на езика на интерфейса на Handy"
+    "description": "Промяна на езика на интерфейса на Mandy"
   },
   "theme": {
     "title": "Тема на приложението",
-    "description": "Изберете дали Handy да следва системната тема, или да остане светла или тъмна",
+    "description": "Изберете дали Mandy да следва системната тема, или да остане светла или тъмна",
     "options": {
       "system": "Системна",
       "light": "Светла",
@@ -988,5 +993,20 @@
     "learnMore": "Как да поправите това",
     "recorderBlocked": "В момента не могат да се записват бързи клавиши — Secure Input на macOS блокира клавишните събития. Първо отстранете предупреждението за Secure Input.",
     "dismiss": "Отхвърляне"
+  },
+  "meetings": {
+    "title": "Meetings",
+    "description": "Record your microphone and the sound from your speakers, such as a Slack or Google Meet call, as two separate tracks. Each track is transcribed on its own. Tell everyone in the meeting that you are recording.",
+    "start": "Start recording",
+    "stop": "Stop recording",
+    "recording": "Recording",
+    "empty": "No meeting recordings yet.",
+    "trackMe": "Me",
+    "trackThem": "Them",
+    "pending": "Waiting to transcribe",
+    "transcribing": "Transcribing… {{percent}}%",
+    "noSpeech": "No speech detected",
+    "copy": "Copy meeting",
+    "delete": "Delete meeting"
   }
 }

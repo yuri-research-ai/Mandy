@@ -34,6 +34,7 @@ pub enum NoticeSource {
     Dictation,
     File,
     Model,
+    Meeting,
 }
 
 /// The frontend maps each code to its text in `src/lib/notices.ts`.
@@ -48,6 +49,8 @@ pub enum NoticeCode {
     PostProcessFailed,
     FileTranscriptionFailed,
     FilePostProcessFailed,
+    MeetingStartFailed,
+    MeetingStopFailed,
 }
 
 impl NoticeCode {
@@ -59,7 +62,9 @@ impl NoticeCode {
             | Self::MicPermissionDenied
             | Self::RecordingFailed
             | Self::ModelLoadFailed
-            | Self::FileTranscriptionFailed => NoticeLevel::Error,
+            | Self::FileTranscriptionFailed
+            | Self::MeetingStartFailed
+            | Self::MeetingStopFailed => NoticeLevel::Error,
             Self::PostProcessFailed | Self::FilePostProcessFailed => NoticeLevel::Warning,
         }
     }
@@ -76,6 +81,8 @@ impl NoticeCode {
             Self::PostProcessFailed => &strings.post_process_failed_title,
             Self::FileTranscriptionFailed => &strings.file_transcription_failed_title,
             Self::FilePostProcessFailed => &strings.file_post_process_failed_title,
+            Self::MeetingStartFailed => &strings.meeting_start_failed_title,
+            Self::MeetingStopFailed => &strings.meeting_stop_failed_title,
         }
     }
 }

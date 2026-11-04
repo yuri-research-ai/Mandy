@@ -618,7 +618,10 @@ impl ShortcutAction for TranscribeAction {
                     if rm_clone.is_recording_readiness_current(generation) {
                         play_feedback_sound_blocking(&app_clone, SoundType::Start);
                     }
-                    if rm_clone.is_recording_readiness_current(generation) {
+                    // A meeting records system audio, so dictation must not mute it.
+                    if rm_clone.is_recording_readiness_current(generation)
+                        && !meeting_recording(&app_clone)
+                    {
                         rm_clone.apply_mute();
                     }
                 });
@@ -1043,6 +1046,35 @@ impl ShortcutAction for TestAction {
     }
 }
 
+/// True while a meeting recording is running (macOS only).
+fn meeting_recording(app: &AppHandle) -> bool {
+    #[cfg(target_os = "macos")]
+    {
+        app.state::<std::sync::Arc<crate::meeting::MeetingManager>>()
+            .is_recording()
+    }
+    #[cfg(not(target_os = "macos"))]
+    {
+        let _ = app;
+        false
+    }
+}
+
+// Meeting Action: each press starts or stops the meeting recording, which
+// captures the microphone and system audio as two tracks. Release does nothing.
+struct MeetingAction;
+
+impl ShortcutAction for MeetingAction {
+    fn start(&self, app: &AppHandle, _binding_id: &str, _shortcut_str: &str) {
+        #[cfg(target_os = "macos")]
+        crate::meeting::toggle_meeting(app);
+        #[cfg(not(target_os = "macos"))]
+        log::info!("Meeting recording is only available on macOS ({})", app.package_info().name);
+    }
+
+    fn stop(&self, _app: &AppHandle, _binding_id: &str, _shortcut_str: &str) {}
+}
+
 // Static Action Map
 pub static ACTION_MAP: Lazy<HashMap<String, Arc<dyn ShortcutAction>>> = Lazy::new(|| {
     let mut map = HashMap::new();
@@ -1059,6 +1091,10 @@ pub static ACTION_MAP: Lazy<HashMap<String, Arc<dyn ShortcutAction>>> = Lazy::ne
     map.insert(
         "cancel".to_string(),
         Arc::new(CancelAction) as Arc<dyn ShortcutAction>,
+    );
+    map.insert(
+        "meeting".to_string(),
+        Arc::new(MeetingAction) as Arc<dyn ShortcutAction>,
     );
     map.insert(
         "test".to_string(),

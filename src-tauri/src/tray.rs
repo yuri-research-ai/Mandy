@@ -616,9 +616,9 @@ pub fn tray_tooltip() -> String {
 
 fn version_label() -> String {
     if cfg!(debug_assertions) {
-        format!("Handy v{} (Dev)", env!("CARGO_PKG_VERSION"))
+        format!("Mandy v{} (Dev)", env!("CARGO_PKG_VERSION"))
     } else {
-        format!("Handy v{}", env!("CARGO_PKG_VERSION"))
+        format!("Mandy v{}", env!("CARGO_PKG_VERSION"))
     }
 }
 
@@ -974,6 +974,8 @@ mod tests {
             source_name: None,
             language: None,
             language_source: None,
+            meeting_id: None,
+            meeting_track: None,
         }
     }
 

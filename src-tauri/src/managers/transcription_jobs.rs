@@ -17,7 +17,7 @@ use tauri::{AppHandle, Manager};
 use tauri_specta::Event;
 
 use crate::actions::process_transcription_output;
-use crate::audio_toolkit::{decode_audio_file, read_wav_samples, save_wav_file};
+use crate::audio_toolkit::{decode_audio_file, save_wav_file};
 use crate::managers::history::{HistoryEntry, HistoryManager};
 use crate::managers::transcription::{
     panic_payload_message, ChunkControl, Transcription, TranscriptionManager,
@@ -166,6 +166,12 @@ impl TranscriptionJobManager {
         self.queue(entry_id, true);
     }
 
+    /// Queues an entry whose recording is already in the recordings folder
+    /// (for example, a meeting track). Runs in the order queued.
+    pub fn enqueue(&self, entry_id: i64) {
+        self.queue(entry_id, false);
+    }
+
     /// Queues the entry to be transcribed from its recording, unless it
     /// already is.
     fn queue(&self, entry_id: i64, retry: bool) {
@@ -303,7 +309,9 @@ impl TranscriptionJobManager {
         let tm = Arc::clone(&self.app.state::<Arc<TranscriptionManager>>());
         let entry = tauri::async_runtime::block_on(hm.get_entry_by_id(entry_id))?
             .ok_or_else(|| anyhow!("History entry {} not found", entry_id))?;
-        let samples = read_wav_samples(hm.get_audio_file_path(&entry.file_name))
+        // Decodes and resamples to 16 kHz mono, so recordings in any WAV format
+        // work, including the 48 kHz system-audio tracks from meeting mode.
+        let samples = decode_audio_file(&hm.get_audio_file_path(&entry.file_name))
             .map_err(|e| anyhow!("Failed to load audio: {}", e))?;
         if samples.is_empty() {
             return Err(anyhow!("Recording has no audio samples"));

@@ -19,13 +19,14 @@
     "postProcessing": "עיבוד משלים",
     "history": "היסטוריה",
     "debug": "ניפוי שגיאות",
-    "about": "אודות"
+    "about": "אודות",
+    "meetings": "Meetings"
   },
   "onboarding": {
     "customModelDescription": "לא נתמך באופן רשמי",
     "migration": {
       "title": "המודלים שלך צריכים עדכון",
-      "description": "Handy משתמש כעת בסוג חדש יותר של מודלים. יש להוריד את הגרסה החדשה כדי להמשיך לתמלל. גרסאות ישנות יוסרו.",
+      "description": "Mandy משתמש כעת בסוג חדש יותר של מודלים. יש להוריד את הגרסה החדשה כדי להמשיך לתמלל. גרסאות ישנות יוסרו.",
       "replaces": "מחליף את {{name}}",
       "oldFormat": "פורמט ישן",
       "failed": "ההורדה נכשלה",
@@ -62,11 +63,11 @@
     "permissions": {
       "microphone": {
         "name": "מיקרופון",
-        "why": "כדי ש-Handy ישמע אותך. השמע הופך לטקסט במחשב הזה ולא מועלה לשום מקום."
+        "why": "כדי ש-Mandy ישמע אותך. השמע הופך לטקסט במחשב הזה ולא מועלה לשום מקום."
       },
       "accessibility": {
         "name": "נגישות",
-        "why": "כדי שקיצור המקשים שלך יעבוד בכל אפליקציה, ו-Handy יוכל להקליד את הטקסט איפה שהסמן נמצא."
+        "why": "כדי שקיצור המקשים שלך יעבוד בכל אפליקציה, ו-Mandy יוכל להקליד את הטקסט איפה שהסמן נמצא."
       },
       "errors": {
         "checkFailed": "בדיקת ההרשאות נכשלה. נסה שוב.",
@@ -80,12 +81,12 @@
       "openSettings": "פתח הגדרות",
       "allowed": "מאושר",
       "waiting": "ממתין",
-      "turnOnMac": "הפעל את Handy בהגדרות המערכת ואז חזור לכאן.",
+      "turnOnMac": "הפעל את Mandy בהגדרות המערכת ואז חזור לכאן.",
       "turnOnWindows": "הפעל גישה למיקרופון ב-הגדרות Windows ואז חזור לכאן.",
       "hintBoth": "אשר את שתיהן כדי להמשיך",
       "hintMicrophone": "אשר את המיקרופון כדי להמשיך",
       "welcomeBack": "ברוך שובך. ממשיכים מהמקום שבו עצרת.",
-      "relaunch": "קיצור המקשים לא מגיב אחרי זה? <relaunch>הפעל מחדש את Handy</relaunch> ותחזור בדיוק לכאן."
+      "relaunch": "קיצור המקשים לא מגיב אחרי זה? <relaunch>הפעל מחדש את Mandy</relaunch> ותחזור בדיוק לכאן."
     },
     "shell": {
       "back": "חזרה",
@@ -96,11 +97,11 @@
       "title": "דבר במקום להקליד, בכל אפליקציה",
       "subtitle": "בחר את השפות שבהן תכתיב",
       "languagesLabel": "שפות",
-      "noMatch": "אין שפה שתואמת ל„{{query}}”. המודלים של Handy מכסים כ-100 שפות; עוד שפות זמינות בהגדרות.",
+      "noMatch": "אין שפה שתואמת ל„{{query}}”. המודלים של Mandy מכסים כ-100 שפות; עוד שפות זמינות בהגדרות.",
       "appLanguage": "שפת האפליקציה",
       "menusIn": "תפריטים ב<b>{{language}}</b>",
       "chinese": {
-        "question": "אתה מדבר {{languages}}. באילו תווים Handy צריך לכתוב?",
+        "question": "אתה מדבר {{languages}}. באילו תווים Mandy צריך לכתוב?",
         "label": "תווים סיניים",
         "zh-Hans": "מפושטת",
         "zh-Hant": "טייוואן",
@@ -170,7 +171,7 @@
     },
     "try": {
       "title": "בוא ננסה!",
-      "subtitle": "Handy בפינה, ילווה אותך בדרך",
+      "subtitle": "Mandy בפינה, ילווה אותך בדרך",
       "noteLabel": "פתק",
       "placeholder": "פתק חדש",
       "hold": "החזק את <keys/> ודבר.",
@@ -198,14 +199,14 @@
     },
     "done": {
       "title": "הכול מוכן",
-      "subMac": "Handy נמצא עכשיו בשורת התפריטים. החזק או הקש על <keys/> בכל אפליקציה כדי לדבר.",
-      "subTray": "Handy נמצא עכשיו במגש המערכת. החזק או הקש על <keys/> בכל אפליקציה כדי לדבר.",
+      "subMac": "Mandy נמצא עכשיו בשורת התפריטים. החזק או הקש על <keys/> בכל אפליקציה כדי לדבר.",
+      "subTray": "Mandy נמצא עכשיו במגש המערכת. החזק או הקש על <keys/> בכל אפליקציה כדי לדבר.",
       "hint": "אפשר לשנות את אלה אחר כך בהגדרות",
       "highFiveLabel": "כיף",
-      "atLogin": "הפעל את Handy כשאני נכנס למערכת",
+      "atLogin": "הפעל את Mandy כשאני נכנס למערכת",
       "finish": "סיום",
       "panel": {
-        "name": "Handy",
+        "name": "Mandy",
         "ready": "מוכן",
         "languages": "שפות",
         "model": "מודל דיבור",
@@ -330,7 +331,7 @@
     "general": {
       "title": "כללי",
       "shortcut": {
-        "title": "קיצורי מקשים של Handy",
+        "title": "קיצורי מקשים של Mandy",
         "description": "הגדר קיצורי מקשים כדי להפעיל הקלטה ותמלול דיבור",
         "loading": "טוען קיצורי מקשים...",
         "none": "לא הוגדרו קיצורי מקשים",
@@ -372,7 +373,7 @@
       },
       "preferredLanguages": {
         "title": "שפות מועדפות",
-        "description": "השפות שאתה מדבר. Handy משתמש בהן כדי להמליץ על מודלים.",
+        "description": "השפות שאתה מדבר. Mandy משתמש בהן כדי להמליץ על מודלים.",
         "noMatch": "אין שפה שתואמת ל„{{query}}”",
         "weak": "עדיין אין מודל שמזהה היטב את {{languages}}."
       },
@@ -399,17 +400,17 @@
         "fits": "עבור השפות שלך",
         "untested": "לא נבדקו"
       },
-      "untestedNote": "לא נבדקו עם Handy. ייתכן שהם איטיים יותר או שיעשו יותר טעויות.",
+      "untestedNote": "לא נבדקו עם Mandy. ייתכן שהם איטיים יותר או שיעשו יותר טעויות.",
       "untestedHidden_one": "עוד מודל {{count}} לא מותאם להכתבה. חפש כדי למצוא אותו.",
       "untestedHidden_other": "עוד {{count}} מודלים לא מותאמים להכתבה. חפש כדי למצוא אותם.",
-      "emptyYours": "עדיין אין מודלים. בחר אחד למטה: הוא יורד, ואז Handy משתמש בו.",
+      "emptyYours": "עדיין אין מודלים. בחר אחד למטה: הוא יורד, ואז Mandy משתמש בו.",
       "showMore": "הצג עוד {{count}}",
       "showFewer": "הצג פחות",
       "download": "הורד והשתמש",
       "downloadingThenUse": "{{percent}}% מתוך {{total}}, ואז עובר אליו",
       "loading": "טוען…",
       "deleteAsk": "למחוק את {{name}}? זה ישחרר {{size}}.",
-      "deleteAskActive": "למחוק את {{name}}? Handy לא יוכל לתמלל עד שתבחר מודל אחר.",
+      "deleteAskActive": "למחוק את {{name}}? Mandy לא יוכל לתמלל עד שתבחר מודל אחר.",
       "cancel": "ביטול",
       "deleteModel": "מחק את {{name}}",
       "cancelDownload": "הפסק להוריד את {{name}}",
@@ -423,14 +424,14 @@
         "marks": "? עדיין לא נמדד. — לא שומע את השפה הזו."
       },
       "retiredNotice": {
-        "title": "מודלים ישנים כבר לא עובדים עם Handy",
+        "title": "מודלים ישנים כבר לא עובדים עם Mandy",
         "description": "הם תופסים {{size}} במחשב שלך.",
         "delete": "מחיקת מודלים",
         "deleteFailed": "לא ניתן היה למחוק חלק מהמודלים הישנים. פרטים נוספים ביומן."
       },
       "rescan": {
         "label": "סריקה מחדש",
-        "tooltip": "סריקה מחדש לאיתור מודלים שנוספו לתיקיית המודלים או למטמון של Hugging Face מחוץ ל-Handy"
+        "tooltip": "סריקה מחדש לאיתור מודלים שנוספו לתיקיית המודלים או למטמון של Hugging Face מחוץ ל-Mandy"
       }
     },
     "languages": {
@@ -500,11 +501,11 @@
       },
       "autostart": {
         "label": "הפעל עם עליית המערכת",
-        "description": "הפעל את Handy אוטומטית כשאתה מתחבר למחשב."
+        "description": "הפעל את Mandy אוטומטית כשאתה מתחבר למחשב."
       },
       "showTrayIcon": {
         "label": "הצג אייקון במגש",
-        "description": "הצג את האייקון של Handy במגש המערכת."
+        "description": "הצג את האייקון של Mandy במגש המערכת."
       },
       "overlay": {
         "style": {
@@ -741,7 +742,7 @@
       },
       "updateChecks": {
         "label": "בדוק עדכונים",
-        "description": "בדוק אוטומטית אם קיימות גרסאות חדשות של Handy",
+        "description": "בדוק אוטומטית אם קיימות גרסאות חדשות של Mandy",
         "lockedDescription": "מושבת על ידי תצורת המערכת (HANDY_DISABLE_UPDATER)"
       },
       "whatsNewPreview": {
@@ -847,7 +848,7 @@
       },
       "keyboardDiagnostic": {
         "title": "אבחון מקלדת",
-        "description": "בודק אם אירועי מקלדת מגיעים ל-Handy. נרשם רק מספר האירועים — לעולם לא אילו מקשים הקשת.",
+        "description": "בודק אם אירועי מקלדת מגיעים ל-Mandy. נרשם רק מספר האירועים — לעולם לא אילו מקשים הקשת.",
         "run": "הרצת אבחון של 10 שניות",
         "running": "מאזין… הקש על קיצור המקשים שלך כמה פעמים (למשל Option+Space)",
         "secureInputLabel": "Secure Input",
@@ -861,7 +862,7 @@
         "mouse": "עכבר",
         "verdictBlocked": "Secure Input חוסם אירועי מקשים — קיצורים הכוללים מקש רגיל לא יוכלו לפעול עד שהבעיה תיפתר.",
         "verdictSuspicious": "הגיעו אירועים של מקשי החלפה אך לא אירועי מקשים — משהו מדכא מקשים למרות ש-Secure Input מדווח כמושבת. אנא דווח על כך ב-GitHub.",
-        "verdictOk": "אירועי מקשים מגיעים ל-Handy כרגיל.",
+        "verdictOk": "אירועי מקשים מגיעים ל-Mandy כרגיל.",
         "verdictNoEvents": "לא נקלטו אירועים — האם הקשת על מקשים במהלך הבדיקה?",
         "failed": "האבחון נכשל: {{error}}"
       }
@@ -870,15 +871,15 @@
       "title": "אודות",
       "version": {
         "title": "גרסה",
-        "description": "הגרסה הנוכחית של Handy"
+        "description": "הגרסה הנוכחית של Mandy"
       },
       "whatsNewUpdates": {
         "label": "הצג מה חדש",
-        "description": "הצג הערות גרסה לאחר עדכוני Handy"
+        "description": "הצג הערות גרסה לאחר עדכוני Mandy"
       },
       "appDataDirectory": {
         "title": "תיקיית נתוני אפליקציה",
-        "description": "המיקום שבו Handy שומר את הנתונים שלו"
+        "description": "המיקום שבו Mandy שומר את הנתונים שלו"
       },
       "sourceCode": {
         "title": "קוד מקור",
@@ -887,7 +888,7 @@
       },
       "supportDevelopment": {
         "title": "תמיכה בפיתוח",
-        "description": "עזור לנו להמשיך לבנות את Handy",
+        "description": "עזור לנו להמשיך לבנות את Mandy",
         "button": "תרומה"
       },
       "acknowledgments": {
@@ -895,7 +896,7 @@
         "ggml": {
           "title": "ggml",
           "description": "הסקה מהירה לביצועים גבוהים עבור מודל זיהוי הדיבור Whisper של OpenAI",
-          "details": "Handy משתמש ב-ggml לתמלול מהיר ומקומי. תודה לעבודה המדהימה של Georgi Gerganov וכל התורמים."
+          "details": "Mandy משתמש ב-ggml לתמלול מהיר ומקומי. תודה לעבודה המדהימה של Georgi Gerganov וכל התורמים."
         }
       }
     }
@@ -916,7 +917,7 @@
     "portableUpdateBrowseButton": "פתח את GitHub Releases"
   },
   "whatsNew": {
-    "title": "חדש ב-Handy v{{version}}"
+    "title": "חדש ב-Mandy v{{version}}"
   },
   "common": {
     "playbackPosition": "מיקום ההשמעה",
@@ -941,7 +942,7 @@
     "noInputDeviceTitle": "לא נמצא מיקרופון",
     "noInputDevice": "לא זוהה התקן קלט שמע. חבר מיקרופון או אוזנייה ונסה שוב.",
     "recordingFailedTitle": "הפעלת ההקלטה נכשלה",
-    "modelLoadFailed": "Handy לא הצליח לטעון את המודל הזה. נסו שוב או בחרו מודל אחר.",
+    "modelLoadFailed": "Mandy לא הצליח לטעון את המודל הזה. נסו שוב או בחרו מודל אחר.",
     "modelLoadFailedTitle": "טעינת המודל נכשלה",
     "modelDownloadFailed": "ההורדה נכשלה",
     "pasteFailedTitle": "ההדבקה נכשלה",
@@ -951,7 +952,11 @@
     "filePostProcessFailedTitle": "תומלל ללא עיבוד משלים",
     "filePostProcessFailed": "העיבוד המשלים לא הסתיים, ולכן התמלול נשמר כפי שהוא.",
     "fileTranscriptionFailedTitle": "תמלול הקובץ נכשל",
-    "transcriptionFailedTitle": "התמלול נכשל"
+    "transcriptionFailedTitle": "התמלול נכשל",
+    "meetingStartFailedTitle": "Meeting Recording Didn't Start",
+    "meetingStartFailed": "Mandy needs microphone access and system audio recording (macOS 14.2 or later). Allow both in System Settings > Privacy & Security.",
+    "meetingStopFailedTitle": "Meeting Recording Wasn't Saved",
+    "meetingStopFailed": "The recording stopped, but Mandy couldn't save it for transcription."
   },
   "notices": {
     "errorOne": "{{n}} שגיאה",
@@ -962,11 +967,11 @@
   },
   "appLanguage": {
     "title": "שפת האפליקציה",
-    "description": "שנה את שפת הממשק של Handy"
+    "description": "שנה את שפת הממשק של Mandy"
   },
   "theme": {
     "title": "ערכת נושא של האפליקציה",
-    "description": "בחר אם Handy יעקוב אחר ערכת הנושא של המערכת או יישאר בהיר או כהה",
+    "description": "בחר אם Mandy יעקוב אחר ערכת הנושא של המערכת או יישאר בהיר או כהה",
     "options": {
       "system": "מערכת",
       "light": "בהיר",
@@ -988,5 +993,20 @@
     "learnMore": "איך לתקן את זה",
     "recorderBlocked": "לא ניתן להקליט קיצורים כרגע — Secure Input של macOS חוסם אירועי מקשים. פתור תחילה את אזהרת Secure Input.",
     "dismiss": "התעלם"
+  },
+  "meetings": {
+    "title": "Meetings",
+    "description": "Record your microphone and the sound from your speakers, such as a Slack or Google Meet call, as two separate tracks. Each track is transcribed on its own. Tell everyone in the meeting that you are recording.",
+    "start": "Start recording",
+    "stop": "Stop recording",
+    "recording": "Recording",
+    "empty": "No meeting recordings yet.",
+    "trackMe": "Me",
+    "trackThem": "Them",
+    "pending": "Waiting to transcribe",
+    "transcribing": "Transcribing… {{percent}}%",
+    "noSpeech": "No speech detected",
+    "copy": "Copy meeting",
+    "delete": "Delete meeting"
   }
 }

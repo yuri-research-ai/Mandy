@@ -1,6 +1,6 @@
 [package]
 name = "handy"
-version = "0.10.0"
+version = "0.10.0+m1"
 description = "Handy"
 authors = ["cjpais"]
 edition = "2021"
@@ -49,6 +49,9 @@ serde_json = "1"
 rdev = { git = "https://github.com/rustdesk-org/rdev" }
 anyhow = "1.0.95"
 hound = "3.5.1"
+# Lock-free ring buffer between the system-audio IO thread and its writer thread.
+# 0.4.0 is already in Cargo.lock through handy-recorder.
+rtrb = "0.4"
 log = "0.4.25"
 env_filter = "0.1.0"
 tokio = { version = "1.43.0", features = ["process"] }

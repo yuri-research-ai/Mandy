@@ -37,12 +37,18 @@ static MIGRATIONS: &[M] = &[
 
 /// Nullable columns added outside [`MIGRATIONS`]; see
 /// [`HistoryManager::apply_migrations`].
-const ADDED_COLUMNS: &[&str] = &["source_name", "language", "language_source"];
+const ADDED_COLUMNS: &[&str] = &[
+    "source_name",
+    "language",
+    "language_source",
+    "meeting_id",
+    "meeting_track",
+];
 
 /// Every column a [`HistoryEntry`] is read from.
 const ENTRY_COLUMNS: &str = "id, file_name, timestamp, saved, title, transcription_text, \
     post_processed_text, post_process_prompt, post_process_requested, source_name, language, \
-    language_source";
+    language_source, meeting_id, meeting_track";
 
 #[derive(Clone, Debug, Serialize, Deserialize, Type)]
 pub struct PaginatedHistory {
@@ -81,6 +87,11 @@ pub struct HistoryEntry {
     pub language: Option<String>,
     /// How that language was chosen; `None` before it was recorded.
     pub language_source: Option<LanguageSource>,
+    /// The meeting this track belongs to; `None` outside meeting recordings.
+    /// Both tracks of one meeting share it.
+    pub meeting_id: Option<String>,
+    /// `"me"` (microphone) or `"them"` (system audio); `None` outside meetings.
+    pub meeting_track: Option<String>,
 }
 
 pub struct HistoryManager {
@@ -272,6 +283,8 @@ impl HistoryManager {
                 .get::<_, Option<String>>("language_source")?
                 .as_deref()
                 .and_then(LanguageSource::parse),
+            meeting_id: row.get("meeting_id")?,
+            meeting_track: row.get("meeting_track")?,
         })
     }
 
@@ -304,6 +317,8 @@ impl HistoryManager {
             source_name: None,
             language,
             language_source,
+            meeting_id: None,
+            meeting_track: None,
         })?;
 
         self.cleanup_old_entries()?;
@@ -328,6 +343,35 @@ impl HistoryManager {
             source_name: Some(source_name),
             language: None,
             language_source: None,
+            meeting_id: None,
+            meeting_track: None,
+        })
+    }
+
+    /// Save one track of a meeting recording. The WAV is already in the
+    /// recordings folder. Like `save_file_entry`, retention never removes it.
+    pub fn save_meeting_entry(
+        &self,
+        file_name: String,
+        source_name: String,
+        meeting_id: String,
+        track: String,
+    ) -> Result<HistoryEntry> {
+        self.insert_entry(HistoryEntry {
+            id: 0,
+            file_name,
+            timestamp: Utc::now().timestamp(),
+            saved: false,
+            title: String::new(),
+            transcription_text: String::new(),
+            post_processed_text: None,
+            post_process_prompt: None,
+            post_process_requested: false,
+            source_name: Some(source_name),
+            language: None,
+            language_source: None,
+            meeting_id: Some(meeting_id),
+            meeting_track: Some(track),
         })
     }
 
@@ -348,8 +392,10 @@ impl HistoryManager {
                 post_process_requested,
                 source_name,
                 language,
-                language_source
-            ) VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9, ?10, ?11)",
+                language_source,
+                meeting_id,
+                meeting_track
+            ) VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9, ?10, ?11, ?12, ?13)",
             params![
                 &entry.file_name,
                 entry.timestamp,
@@ -362,6 +408,8 @@ impl HistoryManager {
                 &entry.source_name,
                 &entry.language,
                 entry.language_source.map(LanguageSource::as_str),
+                &entry.meeting_id,
+                &entry.meeting_track,
             ],
         )?;
         entry.id = conn.last_insert_rowid();
@@ -750,7 +798,9 @@ mod tests {
                 post_process_requested BOOLEAN NOT NULL DEFAULT 0,
                 source_name TEXT,
                 language TEXT,
-                language_source TEXT
+                language_source TEXT,
+                meeting_id TEXT,
+                meeting_track TEXT
             );",
         )
         .expect("create transcription_history table");

@@ -17,6 +17,8 @@ mod languages;
 mod llm_client;
 mod managers;
 mod memory;
+#[cfg(target_os = "macos")]
+mod meeting;
 mod notices;
 mod overlay;
 mod paste_tx;
@@ -219,6 +221,8 @@ fn initialize_core_logic(app_handle: &AppHandle) {
     app_handle.manage(model_manager.clone());
     app_handle.manage(transcription_manager.clone());
     app_handle.manage(history_manager.clone());
+    #[cfg(target_os = "macos")]
+    app_handle.manage(Arc::new(meeting::MeetingManager::default()));
     app_handle.manage(tray::TrayState::new());
     app_handle.manage(TranscriptionJobManager::new(app_handle));
 
@@ -781,6 +785,9 @@ pub fn run(cli_args: CliArgs) {
             commands::models::is_model_loading,
             commands::models::rescan_local_models,
             commands::audio::update_microphone_mode,
+            commands::meeting::start_meeting_recording,
+            commands::meeting::stop_meeting_recording,
+            commands::meeting::is_meeting_recording,
             commands::audio::get_microphone_mode,
             commands::audio::get_windows_microphone_permission_status,
             commands::audio::open_microphone_privacy_settings,
@@ -998,7 +1005,7 @@ pub fn run(cli_args: CliArgs) {
             // for portable mode (redirects WebView2 cache to portable Data dir)
             let mut win_builder =
                 tauri::WebviewWindowBuilder::new(app, "main", tauri::WebviewUrl::App("/".into()))
-                    .title("Handy")
+                    .title("Mandy")
                     .inner_size(utils::MAIN_WINDOW_SIZE.0, utils::MAIN_WINDOW_SIZE.1)
                     .min_inner_size(utils::MAIN_WINDOW_SIZE.0, utils::MAIN_WINDOW_SIZE.1)
                     .resizable(true)
