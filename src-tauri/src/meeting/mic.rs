@@ -2,14 +2,14 @@
 //!
 //! This uses its own `handy_recorder::Recorder`, separate from the one dictation
 //! uses, so starting or stopping a meeting never touches dictation's state.
-//! Audio is written straight to disk through `MonoWavWriter`.
+//! Audio is written straight to disk through `FlacWriter`.
 //!
 //! When the microphone is lost (unplugged, sleep, ...) the meeting keeps going:
 //! a supervisor thread moves capture to the built-in microphone, and moves back
 //! to the preferred microphone once it returns. The file is the same throughout;
 //! the audio simply has a short gap where the device changed.
 
-use super::wav::MonoWavWriter;
+use super::flac::FlacWriter;
 use anyhow::{anyhow, Context, Result};
 use handy_recorder::{AudioChunk, InputDevice, Recorder, RecorderConfig, Sink};
 use std::path::{Path, PathBuf};
@@ -23,9 +23,9 @@ use std::time::Duration;
 const SUPERVISE_TICK: Duration = Duration::from_secs(1);
 
 /// Receives microphone chunks from handy-recorder and writes them to disk.
-/// Runs on the recorder's delivery thread, so it only does file I/O.
+/// Runs on the recorder's delivery thread, so it only encodes and writes.
 pub struct MicSink {
-    writer: Option<MonoWavWriter>,
+    writer: Option<FlacWriter>,
     error: Option<String>,
 }
 
@@ -61,7 +61,7 @@ struct Inner {
     /// The device currently open, if any. `None` between two devices.
     recorder: Option<Recorder<MicSink>>,
     /// The writer, held here only while no recorder owns it.
-    writer: Option<MonoWavWriter>,
+    writer: Option<FlacWriter>,
     /// Name of the device `recorder` is open on.
     device_name: Option<String>,
     /// Errors from recorders that ended, reported by `stop` if nothing else is.
@@ -106,7 +106,7 @@ impl MicCapture {
 
         let recorder = open_on(device.as_ref(), &hooks)?;
         let sample_rate = recorder.info().format.sample_rate;
-        let writer = MonoWavWriter::create(path, sample_rate)?;
+        let writer = FlacWriter::create(path, sample_rate)?;
         recorder
             .start(MicSink {
                 writer: Some(writer),

@@ -5,7 +5,7 @@
 //! the callback here only downmixes to mono and pushes into a lock-free ring
 //! buffer. A separate writer thread drains the buffer into a WAV file.
 
-use super::wav::MonoWavWriter;
+use super::flac::FlacWriter;
 use anyhow::{bail, Result};
 use std::ffi::{c_char, c_void, CStr};
 use std::path::PathBuf;
@@ -94,7 +94,7 @@ fn write_loop(
     };
     log::info!("System audio: first callback at {rate} Hz, writing {}", path.display());
 
-    let mut writer = MonoWavWriter::create(&path, rate)?;
+    let mut writer = FlacWriter::create(&path, rate)?;
     let mut buffer = vec![0f32; 4096];
     loop {
         let available = consumer.slots();

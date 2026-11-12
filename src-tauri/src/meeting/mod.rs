@@ -8,7 +8,7 @@
 
 pub mod mic;
 pub mod system_tap;
-pub mod wav;
+pub mod flac;
 
 use anyhow::{bail, Context, Result};
 use mic::{MicCapture, MicRecording};
@@ -49,7 +49,7 @@ pub struct MeetingManager {
 }
 
 impl MeetingManager {
-    /// Starts both halves, writing `<id>-system.wav` and `<id>-mic.wav` into
+    /// Starts both halves, writing `<id>-system.flac` and `<id>-mic.flac` into
     /// `dir`. Returns the meeting id. If either half fails, the other is
     /// stopped and its file discarded.
     pub fn start(&self, dir: &Path) -> Result<String> {
@@ -62,9 +62,9 @@ impl MeetingManager {
 
         let meeting_id = format!("meeting-{}", unix_millis());
         // System audio first: it is the step that can fail on permission.
-        let system = SystemAudioCapture::start(dir.join(format!("{meeting_id}-system.wav")))
+        let system = SystemAudioCapture::start(dir.join(format!("{meeting_id}-system.flac")))
             .context("Starting system audio capture")?;
-        let mic = match MicCapture::start(&dir.join(format!("{meeting_id}-mic.wav"))) {
+        let mic = match MicCapture::start(&dir.join(format!("{meeting_id}-mic.flac"))) {
             Ok(mic) => mic,
             Err(e) => {
                 let _ = system.stop();
