@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="src-tauri/icons/icon.png" alt="Mandy" width="128" height="128">
+  <img src="src-tauri/icons/logo.png" alt="Mandy" width="128" height="128">
 </p>
 
 <h1 align="center">Mandy</h1>
