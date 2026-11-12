@@ -73,7 +73,14 @@ Mandy has no update feed yet, so there is no in-app updater. Builds are committe
 | Intel                     | `releases/Mandy_<version>_x64.dmg`     |
 
 1. Open the `.dmg` and drag **Mandy** to Applications.
-2. The build is ad-hoc signed. On first launch macOS may refuse to open it. Right-click the app, choose **Open**, and confirm.
+2. The build is ad-hoc signed and not notarized, so the first launch stops with "Apple could not verify Mandy is free of malware". Click **Done**, open **System Settings > Privacy & Security**, scroll down to the message about Mandy and click **Open Anyway**. You only need to do this once. The equivalent in a terminal, after the app is in Applications:
+
+   ```bash
+   xattr -d com.apple.quarantine /Applications/Mandy.app
+   ```
+
+   On macOS 14 and earlier, right-clicking the app and choosing **Open** works as well.
+
 3. Grant **Accessibility** (for the global shortcut and pasting) and **Microphone** when asked. Grant **System Audio Recording** the first time you record a meeting.
 4. Pick a model on the Models page. Parakeet is the fastest choice on Apple Silicon; Whisper Turbo gives the best quality for non-English speech.
 5. Set your shortcuts on the General page. Defaults:
