@@ -65,7 +65,12 @@ Dictation keeps working while a meeting is recording. Normally dictation mutes s
 
 ## Installation
 
-Mandy has no update feed yet, so there is no in-app updater. Builds are committed to the repository in the [`releases/`](releases/) folder, one `.dmg` per version, for example `releases/Mandy_0.10.0+m2_aarch64.dmg`. Take the newest one, or build it yourself (see below). Only Apple Silicon is built at the moment.
+Mandy has no update feed yet, so there is no in-app updater. Builds are committed to the repository in the [`releases/`](releases/) folder, one `.dmg` per version and architecture. Take the newest one for your Mac, or build it yourself (see below).
+
+| Mac                       | File                                   |
+| ------------------------- | -------------------------------------- |
+| Apple Silicon (M1 and up) | `releases/Mandy_<version>_aarch64.dmg` |
+| Intel                     | `releases/Mandy_<version>_x64.dmg`     |
 
 1. Open the `.dmg` and drag **Mandy** to Applications.
 2. The build is ad-hoc signed. On first launch macOS may refuse to open it. Right-click the app, choose **Open**, and confirm.
@@ -108,7 +113,14 @@ CMAKE_POLICY_VERSION_MINIMUM=3.5 bun run tauri dev
 bun run tauri build
 ```
 
-The macOS bundle ends up in `src-tauri/target/release/bundle/`: `macos/Mandy.app` and `dmg/Mandy_<version>_aarch64.dmg`.
+The macOS bundle ends up in `src-tauri/target/release/bundle/`: `macos/Mandy.app` and `dmg/Mandy_<version>_aarch64.dmg`. For an Intel build from an Apple Silicon Mac, add the target once and build for it:
+
+```bash
+rustup target add x86_64-apple-darwin
+bun run tauri build --target x86_64-apple-darwin
+```
+
+The result lands in `src-tauri/target/x86_64-apple-darwin/release/bundle/` as `Mandy_<version>_x64.dmg`. The Swift bridge for system audio is compiled without the Swift runtime compatibility archives, because the Command Line Tools ship them for arm64 only.
 
 Before committing, run the linters and formatters:
 
