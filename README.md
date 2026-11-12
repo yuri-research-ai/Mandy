@@ -65,12 +65,22 @@ Dictation keeps working while a meeting is recording. Normally dictation mutes s
 
 ## Installation
 
-Mandy has no update feed yet, so there is no in-app updater. Builds are committed to the repository in the [`releases/`](releases/) folder, one `.dmg` per version and architecture. Take the newest one for your Mac, or build it yourself (see below).
+Mandy has no update feed yet, so there is no in-app updater. The quickest way to install or update is the script in the repository root:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/yuri-research-ai/Mandy/mandy/install.sh | bash
+```
+
+It downloads the DMG for your Mac, checks its SHA-256 against the value in the script, copies `Mandy.app` to `/Applications`, strips the quarantine flag and, on an update, clears the stale Accessibility grant so Mandy asks for it again. No sudo. Set `MANDY_INSTALL_DIR` to install somewhere else. Read the script first if you prefer; it is short.
+
+Builds are also committed to the repository in the [`releases/`](releases/) folder, one `.dmg` per version and architecture, for a manual install. Take the newest one for your Mac, or build it yourself (see below).
 
 | Mac                       | File                                   |
 | ------------------------- | -------------------------------------- |
 | Apple Silicon (M1 and up) | `releases/Mandy_<version>_aarch64.dmg` |
 | Intel                     | `releases/Mandy_<version>_x64.dmg`     |
+
+Manual install:
 
 1. Open the `.dmg` and drag **Mandy** to Applications.
 2. The build is ad-hoc signed and not notarized, so the first launch stops with "Apple could not verify Mandy is free of malware". Click **Done**, open **System Settings > Privacy & Security**, scroll down to the message about Mandy and click **Open Anyway**. You only need to do this once. The equivalent in a terminal, after the app is in Applications:
@@ -96,7 +106,7 @@ Windows and Linux builds work for dictation but have not been exercised with thi
 
 Every build is ad-hoc signed, so each version has a different code identity as far as macOS is concerned. Permissions are tied to that identity, so after you replace `Mandy.app` with a newer version, **Accessibility**, **Microphone** and **System Audio Recording** have to be granted again. Accessibility is the one that misleads: the old entry in **System Settings > Privacy & Security > Accessibility** still shows as enabled, but it no longer covers the new build. The shortcut stays on "Waiting..." and nothing is pasted.
 
-After installing the new version:
+The install script does this for you. By hand, after installing the new version:
 
 1. Quit Mandy.
 2. Open **System Settings > Privacy & Security > Accessibility**, select **Mandy** and remove it with the **−** button.
