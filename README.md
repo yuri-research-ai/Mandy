@@ -92,6 +92,26 @@ Mandy has no update feed yet, so there is no in-app updater. Builds are committe
 
 Windows and Linux builds work for dictation but have not been exercised with this fork. The Meetings page is hidden on those platforms.
 
+### Updating to a new version
+
+Every build is ad-hoc signed, so each version has a different code identity as far as macOS is concerned. The **Accessibility** grant is tied to that identity: after you replace `Mandy.app` with a newer version, the old entry in **System Settings > Privacy & Security > Accessibility** still shows as enabled, but it no longer covers the new build. The shortcut stays on "Waiting..." and nothing is pasted.
+
+After installing the new version:
+
+1. Quit Mandy.
+2. Open **System Settings > Privacy & Security > Accessibility**, select **Mandy** and remove it with the **−** button.
+3. Launch Mandy and grant Accessibility again when it asks.
+
+The same from a terminal:
+
+```bash
+osascript -e 'tell application id "com.yuri-research-ai.mandy" to quit' || true
+tccutil reset Accessibility com.yuri-research-ai.mandy
+open /Applications/Mandy.app
+```
+
+Microphone and System Audio Recording are not affected. Settings, history and downloaded models survive the update.
+
 ## Building from source
 
 ### Prerequisites
@@ -181,6 +201,8 @@ Because the bundle identifier changed, Mandy does not see settings or history fr
 **Meeting starts, but the "Them" track is missing.** The system audio tap received no callbacks. Check that System Audio Recording is granted for Mandy, that a default output device exists, and that something was actually playing. The log notes when the tap starts, when the first callback arrives and when it stops, so a silent tap is visible there. Open the Debug page to find the log folder.
 
 **Only the "Me" track transcribes, "Them" says "No speech detected."** The tap worked but recorded silence. The tap follows the default output device. Switching output in the middle of a call, for example to AirPods, moves the tap with it, but audio routed through a virtual device or an aggregate device may not pass through.
+
+**Shortcut stays on "Waiting..." after an update, nothing is pasted.** The Accessibility grant belongs to the previous build. Remove Mandy from Accessibility and grant it again, see [Updating to a new version](#updating-to-a-new-version).
 
 **Meeting refuses to start on macOS 13 or earlier.** Process taps are a macOS 14.2 feature. Dictation still works.
 
