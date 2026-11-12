@@ -94,13 +94,14 @@ Windows and Linux builds work for dictation but have not been exercised with thi
 
 ### Updating to a new version
 
-Every build is ad-hoc signed, so each version has a different code identity as far as macOS is concerned. The **Accessibility** grant is tied to that identity: after you replace `Mandy.app` with a newer version, the old entry in **System Settings > Privacy & Security > Accessibility** still shows as enabled, but it no longer covers the new build. The shortcut stays on "Waiting..." and nothing is pasted.
+Every build is ad-hoc signed, so each version has a different code identity as far as macOS is concerned. Permissions are tied to that identity, so after you replace `Mandy.app` with a newer version, **Accessibility**, **Microphone** and **System Audio Recording** have to be granted again. Accessibility is the one that misleads: the old entry in **System Settings > Privacy & Security > Accessibility** still shows as enabled, but it no longer covers the new build. The shortcut stays on "Waiting..." and nothing is pasted.
 
 After installing the new version:
 
 1. Quit Mandy.
 2. Open **System Settings > Privacy & Security > Accessibility**, select **Mandy** and remove it with the **−** button.
 3. Launch Mandy and grant Accessibility again when it asks.
+4. Approve Microphone when you first dictate, and System Audio Recording when you first record a meeting. macOS prompts for both again.
 
 The same from a terminal:
 
@@ -110,7 +111,7 @@ tccutil reset Accessibility com.yuri-research-ai.mandy
 open /Applications/Mandy.app
 ```
 
-Microphone and System Audio Recording are not affected. Settings, history and downloaded models survive the update.
+Settings, history and downloaded models survive the update.
 
 ## Building from source
 
