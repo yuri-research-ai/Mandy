@@ -65,7 +65,7 @@ Dictation keeps working while a meeting is recording. Normally dictation mutes s
 
 ## Installation
 
-Mandy has no update feed yet, so there is no in-app updater. Download the `.dmg` from the [releases page](https://github.com/yuri-research-ai/Mandy/releases) or build it yourself (see below).
+Mandy has no update feed yet, so there is no in-app updater. Builds are committed to the repository in the [`releases/`](releases/) folder, one `.dmg` per version, for example `releases/Mandy_0.10.0+m2_aarch64.dmg`. Take the newest one, or build it yourself (see below). Only Apple Silicon is built at the moment.
 
 1. Open the `.dmg` and drag **Mandy** to Applications.
 2. The build is ad-hoc signed. On first launch macOS may refuse to open it. Right-click the app, choose **Open**, and confirm.
