@@ -1,6 +1,13 @@
 fn main() {
-    #[cfg(all(target_os = "macos", target_arch = "aarch64"))]
-    build_apple_intelligence_bridge();
+    // Gate on the *target*, not the host: a `cfg` here is evaluated for the
+    // machine running the build script, so cross-compiling for x86_64 on an
+    // Apple Silicon Mac would build an arm64 bridge and link it into the
+    // x86_64 binary. The Rust side is gated the same way with `#[cfg]`.
+    if std::env::var("CARGO_CFG_TARGET_OS").as_deref() == Ok("macos")
+        && std::env::var("CARGO_CFG_TARGET_ARCH").as_deref() == Ok("aarch64")
+    {
+        build_apple_intelligence_bridge();
+    }
 
     if std::env::var("CARGO_CFG_TARGET_OS").as_deref() == Ok("macos") {
         build_system_audio_bridge();
@@ -632,6 +639,12 @@ fn build_system_audio_bridge() {
             &target,
             "-sdk",
             &sdk_path,
+            // Don't auto-link the Swift runtime compatibility archives. The
+            // Command Line Tools ship them for arm64 only, so an x86_64 build
+            // fails to link. The bridge uses nothing they back-deploy, and the
+            // tap itself needs macOS 14.2 anyway.
+            "-runtime-compatibility-version",
+            "none",
             "-O",
             "-import-objc-header",
             BRIDGE_HEADER,
