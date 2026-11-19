@@ -465,7 +465,12 @@ pub fn remove_filler_words(
 
 /// Phrases Whisper makes up on silence or noise, learned from the subtitle
 /// credits in its training data. Matched exactly, case included.
-const HALLUCINATION_PHRASES: &[&str] = &["Субтитры сделал DimaTorzok", "Продолжение следует..."];
+const HALLUCINATION_PHRASES: &[&str] = &[
+    "Субтитры сделал DimaTorzok",
+    "Продолжение следует...",
+    "Subtitles by the Amara.org community Thank you.",
+    "Thank you for watching! Please subscribe to our channel! Thank you.",
+];
 
 /// Cuts every exact occurrence of a known hallucinated phrase out of the text.
 /// Leftover whitespace is collapsed later by [`normalize_transcription_output`].
@@ -527,6 +532,20 @@ mod tests {
     #[test]
     fn test_remove_hallucination_phrases_exact_only() {
         let text = "субтитры сделал dimatorzok";
+        assert_eq!(remove_hallucination_phrases(text), text);
+    }
+
+    #[test]
+    fn test_remove_hallucination_phrases_english_credits() {
+        let cleaned = remove_hallucination_phrases(
+            "Subtitles by the Amara.org community Thank you.\n\nThank you for watching! Please subscribe to our channel! Thank you.",
+        );
+        assert_eq!(normalize_transcription_output(&cleaned), "");
+    }
+
+    #[test]
+    fn test_remove_hallucination_phrases_keeps_spoken_thank_you() {
+        let text = "Send it to Anna. Thank you.";
         assert_eq!(remove_hallucination_phrases(text), text);
     }
 

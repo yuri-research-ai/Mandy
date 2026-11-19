@@ -2499,7 +2499,7 @@ dependencies = [
 
 [[package]]
 name = "handy"
-version = "0.10.0+m4"
+version = "0.10.0+m5"
 dependencies = [
  "anyhow",
  "chrono",

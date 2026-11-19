@@ -15,9 +15,9 @@ set -euo pipefail
 
 # Kept in sync with package.json, Cargo.toml and tauri.conf.json by the
 # version bump (see .claude/skills/mandy-version-bump).
-VERSION="0.10.0+m4"
-SHA256_AARCH64="3e985f5bb8012bb67d772f665db35d8149c165e492cea43d3e04a17c18f2e352"
-SHA256_X64="c3f7da9ec48ca55735f697da832aab5272b100382d5d9ad2a275781acc56ab50"
+VERSION="0.10.0+m5"
+SHA256_AARCH64="57197984a0e4754116760f476e2627e3d44f06d340811b387f71b33270a98ca1"
+SHA256_X64="3f88c05d49447fe4dc139a07e88fbba956ec44e058fd705d68c1da1d8010d24b"
 
 REPO_RAW="https://raw.githubusercontent.com/yuri-research-ai/Mandy/mandy"
 BUNDLE_ID="com.yuri-research-ai.mandy"
