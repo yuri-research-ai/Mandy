@@ -463,6 +463,18 @@ pub fn remove_filler_words(
     filtered
 }
 
+/// Phrases Whisper makes up on silence or noise, learned from the subtitle
+/// credits in its training data. Matched exactly, case included.
+const HALLUCINATION_PHRASES: &[&str] = &["Субтитры сделал DimaTorzok", "Продолжение следует..."];
+
+/// Cuts every exact occurrence of a known hallucinated phrase out of the text.
+/// Leftover whitespace is collapsed later by [`normalize_transcription_output`].
+pub fn remove_hallucination_phrases(text: &str) -> String {
+    HALLUCINATION_PHRASES
+        .iter()
+        .fold(text.to_string(), |text, phrase| text.replace(phrase, ""))
+}
+
 /// Applies non-filler transcription cleanup.
 ///
 /// Kept separate from [`remove_filler_words`] so disabling filler deletion
@@ -494,6 +506,28 @@ mod tests {
         let language = OutputLanguageEvidence::UserSelected(language.to_string());
         let filtered = remove_filler_words(text, &language, custom_filler_words, true);
         normalize_transcription_output(&filtered)
+    }
+
+    #[test]
+    fn test_remove_hallucination_phrases_alone() {
+        let cleaned = remove_hallucination_phrases("Субтитры сделал DimaTorzok");
+        assert_eq!(normalize_transcription_output(&cleaned), "");
+    }
+
+    #[test]
+    fn test_remove_hallucination_phrases_inside_text() {
+        let cleaned =
+            remove_hallucination_phrases("Привет, как дела? Продолжение следует... Пока.");
+        assert_eq!(
+            normalize_transcription_output(&cleaned),
+            "Привет, как дела? Пока."
+        );
+    }
+
+    #[test]
+    fn test_remove_hallucination_phrases_exact_only() {
+        let text = "субтитры сделал dimatorzok";
+        assert_eq!(remove_hallucination_phrases(text), text);
     }
 
     #[test]

@@ -29,6 +29,34 @@ pub fn is_update_checks_locked() -> bool {
     update_checks_forced_disabled()
 }
 
+/// Clears Mandy's Accessibility grant right before relaunching into an update.
+///
+/// Mandy is ad-hoc signed, so every build has a new code identity. The old
+/// grant keeps looking enabled in System Settings but no longer applies, and
+/// the user can't tell why paste stopped working. Resetting it lets the
+/// relaunched app show the permissions screen and ask again, as `install.sh`
+/// does. Failure is logged, never fatal: the update is already installed.
+#[tauri::command]
+#[specta::specta]
+pub fn prepare_update_relaunch(app: AppHandle) {
+    #[cfg(target_os = "macos")]
+    {
+        let identifier = &app.config().identifier;
+        match std::process::Command::new("/usr/bin/tccutil")
+            .args(["reset", "Accessibility", identifier])
+            .status()
+        {
+            Ok(status) if status.success() => {
+                log::info!("Reset Accessibility grant for {identifier} before relaunch")
+            }
+            Ok(status) => log::warn!("tccutil reset Accessibility exited with {status}"),
+            Err(e) => log::warn!("Failed to run tccutil before relaunch: {e}"),
+        }
+    }
+    #[cfg(not(target_os = "macos"))]
+    let _ = app;
+}
+
 #[tauri::command]
 #[specta::specta]
 pub fn get_app_dir_path(app: AppHandle) -> Result<String, String> {

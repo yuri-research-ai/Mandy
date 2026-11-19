@@ -1,0 +1,15 @@
+{
+  "version": "0.10.0+m4",
+  "notes": "Mandy 0.10.0+m4",
+  "pub_date": "2026-11-19T10:35:30Z",
+  "platforms": {
+    "darwin-aarch64": {
+      "url": "https://raw.githubusercontent.com/yuri-research-ai/Mandy/mandy/releases/Mandy_0.10.0%2Bm4_aarch64.app.tar.gz",
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVSeUk0Sm1pOUM0LzVMTzNrQi91eXAwOUZ0ZmVob0xMcWlzTkRPT0hWQlp1MHJkay9GMVFzTTIxdVgxZXp1ckdiRk95WWRxdzhWNWR1QURjZTJ6WWM0aDhhRkhObm5oMlE0PQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzk1MDg0MzU4CWZpbGU6TWFuZHkuYXBwLnRhci5negpwbzMrTE9GYzZEM0NsL3JEa1JOUm5YTndkZ2FaMnFnNXJldEFLdy9pWFVLMmZUUExjUkRmNkJlejJLdEVoYmk3SHZuUGRvbEhEZTcxV1lXZnkzYWhBdz09Cg=="
+    },
+    "darwin-x86_64": {
+      "url": "https://raw.githubusercontent.com/yuri-research-ai/Mandy/mandy/releases/Mandy_0.10.0%2Bm4_x64.app.tar.gz",
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVSeUk0Sm1pOUM0Ly9qY0FpSmRzV1hneUpEU21oTFhXRFREbTJHei9HUTl3TXdkK21RaEUrYzBIMUlpdHpEK0dBWC9SZExwNTdDL1hiUTFvLzltVmtmeG40MExZbjJ1cndRPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzk1MDg0NTMwCWZpbGU6TWFuZHkuYXBwLnRhci5nego5TExHc3dacnlYUjBxemRidnNSaEZVUEMyeDlCeGExOFJvekJoV01qQStXS1VIZUxKVW85YTRkNTNGbW85S3hWS0lxK1BYa2Z1Sm5rV3o3Y2NzL0ZEUT09Cg=="
+    }
+  }
+}

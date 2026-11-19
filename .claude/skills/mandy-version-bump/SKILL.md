@@ -11,13 +11,13 @@ here. Never reuse an N that was already built or pushed.
 
 ## Where the version lives
 
-Change all five places together, and keep them identical:
+Change the first four by hand and keep them identical; the release script updates `install.sh`:
 
 - `package.json` — `"version"`
 - `src-tauri/Cargo.toml` — `version` under `[package]`
 - `src-tauri/tauri.conf.json` — `"version"`
 - `src-tauri/Cargo.lock` — the `version` line of the `handy` package (the line after `name = "handy"`)
-- `install.sh` — `VERSION`, plus `SHA256_AARCH64` and `SHA256_X64` once the DMGs are built (see below)
+- `install.sh` — `VERSION`, `SHA256_AARCH64` and `SHA256_X64` are written by the release script (see below), not by hand
 
 Editing `Cargo.lock` by hand is fine; running `cargo check` also updates it.
 
@@ -29,15 +29,25 @@ Editing `Cargo.lock` by hand is fine; running `cargo check` also updates it.
 3. The DMG name follows the version: `Mandy_<base>+mN_aarch64.dmg` and `Mandy_<base>+mN_x64.dmg`.
 4. Run `cargo check --manifest-path src-tauri/Cargo.toml` to confirm the lock file is consistent.
 
-## After building the DMGs
+## Building and staging the release
 
-Both architectures are built for every version: `bun run tauri build` for
-Apple Silicon and `bun run tauri build --target x86_64-apple-darwin` for Intel.
-Then:
+After the bump, run:
 
-1. Copy both DMGs into `releases/` and `git rm` the previous version's DMGs.
-2. Put their checksums into `install.sh`:
-   `shasum -a 256 releases/Mandy_<base>+mN_aarch64.dmg releases/Mandy_<base>+mN_x64.dmg`
-   go into `SHA256_AARCH64` and `SHA256_X64`.
-3. Commit the DMGs, `install.sh` and the version files together, so the script
-   at the branch head always points at a DMG that exists at the same commit.
+```bash
+scripts/release-macos.sh
+```
+
+It builds Apple Silicon and Intel, signs the updater bundles with
+`~/.tauri/mandy.key` (override with `MANDY_UPDATER_KEY`; never read or print
+that file), and stages in `releases/`:
+
+- `Mandy_<base>+mN_{aarch64,x64}.dmg` for `install.sh`;
+- `Mandy_<base>+mN_{aarch64,x64}.app.tar.gz` and `.sig` for the in-app updater;
+- `latest.json`, the updater feed
+  (`https://raw.githubusercontent.com/yuri-research-ai/Mandy/mandy/releases/latest.json`).
+
+It also removes the previous version's files and writes `VERSION`,
+`SHA256_AARCH64` and `SHA256_X64` into `install.sh`. Commit all of it together
+with the version files, so the feed and `install.sh` at the branch head always
+name files that exist at the same commit. The updater compares the `+mN`
+suffix numerically (`utils::is_newer_mandy_version`).

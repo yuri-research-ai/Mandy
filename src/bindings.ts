@@ -576,6 +576,18 @@ async isPortable() : Promise<boolean> {
 async isUpdateChecksLocked() : Promise<boolean> {
     return await TAURI_INVOKE("is_update_checks_locked");
 },
+/**
+ * Clears Mandy's Accessibility grant right before relaunching into an update.
+ * 
+ * Mandy is ad-hoc signed, so every build has a new code identity. The old
+ * grant keeps looking enabled in System Settings but no longer applies, and
+ * the user can't tell why paste stopped working. Resetting it lets the
+ * relaunched app show the permissions screen and ask again, as `install.sh`
+ * does. Failure is logged, never fatal: the update is already installed.
+ */
+async prepareUpdateRelaunch() : Promise<void> {
+    await TAURI_INVOKE("prepare_update_relaunch");
+},
 async getAppDirPath() : Promise<Result<string, string>> {
     try {
     return { status: "ok", data: await TAURI_INVOKE("get_app_dir_path") };

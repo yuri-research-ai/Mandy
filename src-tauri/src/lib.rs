@@ -758,6 +758,7 @@ pub fn run(cli_args: CliArgs) {
             commands::cancel_operation,
             commands::is_portable,
             commands::is_update_checks_locked,
+            commands::prepare_update_relaunch,
             commands::get_app_dir_path,
             commands::get_app_settings,
             commands::get_default_settings,
@@ -936,7 +937,13 @@ pub fn run(cli_args: CliArgs) {
     let mut app = builder
         .plugin(tauri_plugin_fs::init())
         .plugin(tauri_plugin_process::init())
-        .plugin(tauri_plugin_updater::Builder::new().build())
+        .plugin(
+            tauri_plugin_updater::Builder::new()
+                .default_version_comparator(|current, release| {
+                    utils::is_newer_mandy_version(&current, &release.version)
+                })
+                .build(),
+        )
         .plugin(tauri_plugin_os::init())
         .plugin(system_languages::init())
         .plugin(tauri_plugin_clipboard_manager::init())

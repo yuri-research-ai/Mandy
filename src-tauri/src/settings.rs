@@ -1396,14 +1396,14 @@ fn os_languages() -> &'static [String] {
     }
 }
 
-/// Update checks are forced off (without touching the persisted setting).
-///
-/// Mandy is off for now: it has no update feed of its own and no updater
-/// signing key, and the configured endpoint still points at upstream Handy.
-/// Re-enable by returning the `HANDY_DISABLE_UPDATER` env check again once
-/// the endpoint, pubkey and signing key are set up.
+/// Update checks are forced off (without touching the persisted setting) when
+/// `HANDY_DISABLE_UPDATER` is set — e.g. by the Nix package, since self-update
+/// can't work against an immutable /nix/store install.
 pub fn update_checks_forced_disabled() -> bool {
-    true
+    use std::sync::OnceLock;
+    static IS_UPDATER_DISABLED: OnceLock<bool> = OnceLock::new();
+    *IS_UPDATER_DISABLED
+        .get_or_init(|| crate::utils::env_flag_enabled("HANDY_DISABLE_UPDATER"))
 }
 
 /// Effective updater state: the user's stored preference, overridden to `false`

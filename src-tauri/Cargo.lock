@@ -2499,7 +2499,7 @@ dependencies = [
 
 [[package]]
 name = "handy"
-version = "0.10.0+m3"
+version = "0.10.0+m4"
 dependencies = [
  "anyhow",
  "chrono",
@@ -2534,6 +2534,7 @@ dependencies = [
  "rusqlite",
  "rusqlite_migration",
  "rustfft",
+ "semver",
  "serde",
  "serde_json",
  "sha2",

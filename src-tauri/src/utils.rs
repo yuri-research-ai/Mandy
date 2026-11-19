@@ -185,9 +185,54 @@ pub fn env_flag_enabled(name: &str) -> bool {
     }
 }
 
+/// The `N` of a Mandy build suffix `+mN`, or `None` for any other build metadata.
+fn mandy_build_number(version: &semver::Version) -> Option<u32> {
+    version.build.as_str().strip_prefix('m')?.parse().ok()
+}
+
+/// Whether `remote` is a newer Mandy release than `current`, for the updater.
+///
+/// Mandy versions are `<base>+mN`. Semver ignores build metadata for
+/// precedence, and the `semver` crate breaks ties by comparing it as text,
+/// so `+m10` would sort before `+m9`. Compare the base first, then `N` as a
+/// number.
+pub fn is_newer_mandy_version(current: &semver::Version, remote: &semver::Version) -> bool {
+    let base = |v: &semver::Version| semver::Version {
+        build: semver::BuildMetadata::EMPTY,
+        ..v.clone()
+    };
+    match base(remote).cmp(&base(current)) {
+        std::cmp::Ordering::Greater => true,
+        std::cmp::Ordering::Less => false,
+        std::cmp::Ordering::Equal => mandy_build_number(remote) > mandy_build_number(current),
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    fn newer(current: &str, remote: &str) -> bool {
+        is_newer_mandy_version(
+            &semver::Version::parse(current).unwrap(),
+            &semver::Version::parse(remote).unwrap(),
+        )
+    }
+
+    #[test]
+    fn mandy_build_suffix_compares_as_a_number() {
+        assert!(newer("0.10.0+m3", "0.10.0+m4"));
+        assert!(newer("0.10.0+m9", "0.10.0+m10"));
+        assert!(!newer("0.10.0+m10", "0.10.0+m9"));
+        assert!(!newer("0.10.0+m4", "0.10.0+m4"));
+    }
+
+    #[test]
+    fn mandy_base_version_wins_over_build_suffix() {
+        assert!(newer("0.10.0+m9", "0.11.0+m1"));
+        assert!(!newer("0.11.0+m1", "0.10.0+m9"));
+        assert!(newer("0.10.0", "0.10.0+m1"));
+    }
 
     #[test]
     fn arm64_native_machine_is_the_only_match() {

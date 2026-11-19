@@ -1,6 +1,6 @@
 [package]
 name = "handy"
-version = "0.10.0+m3"
+version = "0.10.0+m4"
 description = "Handy"
 authors = ["cjpais"]
 edition = "2021"
@@ -67,6 +67,8 @@ symphonia = { version = "0.5.5", features = ["aac", "alac", "isomp4", "mp3", "ai
 # Resamples a decoded file to 16 kHz; the version handy-recorder already uses.
 rubato = "5"
 handy-recorder = "0.1"
+# Compares Mandy's `+mN` build suffix for the updater; already locked via tauri.
+semver = "1"
 reqwest = { version = "0.12", features = ["json", "stream", "gzip", "brotli", "deflate"] }
 futures-util = "0.3"
 rustfft = "6.4.0"

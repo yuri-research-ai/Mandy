@@ -159,6 +159,9 @@ const UpdateChecker: React.FC<UpdateCheckerProps> = ({ className = "" }) => {
             break;
         }
       });
+      // A new ad-hoc signed build invalidates the Accessibility grant; clear
+      // it so the relaunched app asks again instead of silently failing.
+      await commands.prepareUpdateRelaunch();
       await relaunch();
     } catch (error) {
       console.error("Failed to install update:", error);
